@@ -1,11 +1,11 @@
 from datetime import datetime
 dateTimeObj = datetime.now()
-zona1 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+zona1 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,0]
 zona2 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 zona3 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-lugares_zona1 = 0
-lugares_zona2 = 0
-lugares_zona3 = 0
+lugares_zona1 = 1
+lugares_zona2 = 15
+lugares_zona3 = 15
 def getTime():
  dateTimeObj = datetime.now()
  print(" Dia e Hora:",dateTimeObj)
@@ -90,15 +90,25 @@ def estacionar():
 def zonas(zona_estacionar):
     global zona1, zona2, zona3
     global lugares_zona1,lugares_zona2, lugares_zona3
-    for i in range(0,len(zona1),1):
-        if (zona1[i] == 0):
-            lugares_zona1 += 1
-    for i in range(0,len(zona2),1):
-        if (zona2[i] == 0):
-            lugares_zona2 += 1
-    for i in range(0,len(zona3),1):
-        if (zona3[i] == 0):
-            lugares_zona3 += 1
+
+    # defineLista = 0 
+    # x = 0
+    # if zona_estacionar == 1:
+    #     defineLista = zona1
+    #     x = 1
+    # elif zona_estacionar == 2:
+    #     defineLista = zona2
+    # elif zona_estacionar == 3:
+    #     defineLista = zona3
+
+    
+    #     for i in range(0,len(defineLista),1):
+    #         if (zona1[i] == 0):
+    #             zona1[i] = 1
+    #             print("Lugar disponível na Zona ", x, "!")
+
+
+
     if zona_estacionar == 1:
         for i in range(0,len(zona1),1):
             if (zona1[i] == 0):
@@ -106,6 +116,12 @@ def zonas(zona_estacionar):
                 print("Lugar disponível na Zona 1!")
                 lugares_zona1 -= 1
                 break
+            elif lugares_zona1 == 0:
+                    print("Zona cheia! Escolhar outra Zona:")
+                    print(" 1 - Zona 1")
+                    print(" 2 - Zona 2")
+                    print(" 3 - Zona 3")
+                    zona_estacionar = int(input('Insira a opção prentendia: '))
         menu_inicial()
     elif zona_estacionar == 2:
         for i in range(0,len(zona2),1):
@@ -114,6 +130,12 @@ def zonas(zona_estacionar):
                 print("Lugar disponível na Zona 1!")
                 lugares_zona2 -= 1
                 break
+            elif lugares_zona2 == 0:
+                print("Zona cheia! Escolhar outra Zona:")
+                print(" 1 - Zona 1")
+                print(" 2 - Zona 2")
+                print(" 3 - Zona 3")
+                zona_estacionar = int(input('Insira a opção prentendia: '))
         menu_inicial()
     elif zona_estacionar == 3:
         for i in range(0,len(zona3),1):
@@ -122,6 +144,12 @@ def zonas(zona_estacionar):
                 print("Lugar disponível na Zona 1!")
                 lugares_zona3 -= 1
                 break
+            elif lugares_zona3 == 0:
+                print("Zona cheia! Escolhar outra Zona:")
+                print(" 1 - Zona 1")
+                print(" 2 - Zona 2")
+                print(" 3 - Zona 3")
+                zona_estacionar = int(input('Insira a opção prentendia: '))
         menu_inicial()
     else:
         print("Opção inválida, voltando ao menu inicial!")
@@ -139,6 +167,7 @@ def Cliente():
         estacionar()
     elif (opcao_cliente == 2):
         print ("Zona 1: ", lugares_zona1, " lugares", "Zona 2: ",lugares_zona2, "lugares", "Zona 3: ", lugares_zona3, " lugares")
+        menu_inicial()
     elif (opcao_cliente == 3):
         pass
     elif (opcao_cliente == 4):
@@ -153,7 +182,8 @@ def Admnistrador():
     print("0 - Sair")
     opcao_adm = int(input('Insira a opção desejada: '))
     if (opcao_adm == 1):
-        pass
+        print ("Zona 1: ", lugares_zona1, " lugares", "Zona 2: ",lugares_zona2, "lugares", "Zona 3: ", lugares_zona3, " lugares")
+        menu_inicial()
     elif (opcao_adm == 2):
         pass
     elif (opcao_adm == 3):
@@ -176,8 +206,9 @@ def menu_inicial():
     elif (opcao_uti == 3):
         pass
     elif (opcao_uti == 0):
-        pass
+        exit()
     else:
-        pass
+        print("Opção inválida, reiniciando!")
+        menu_inicial()
 getTime()
 menu_inicial()
